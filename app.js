@@ -190,3 +190,23 @@ imageUrlInput.addEventListener('input', () => {
         imgPreview.style.display = 'none';
     }
 });
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Check if user previously chose dark mode
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    darkModeToggle.innerText = "☀️ Light Mode";
+}
+
+darkModeToggle.onclick = () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+        darkModeToggle.innerText = "☀️ Light Mode";
+    } else {
+        localStorage.setItem('theme', 'light');
+        darkModeToggle.innerText = "🌙 Dark Mode";
+    }
+};
