@@ -443,3 +443,53 @@ async function sendMessage() {
 
     if (!error) document.getElementById('msgInput').value = '';
 }
+async function handleUpload(event) {
+    event.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.innerText = "Uploading...";
+    btn.disabled = true;
+
+    const file = document.getElementById('itemPhoto').files[0];
+    const title = document.getElementById('itemTitle').value;
+    const price = document.getElementById('itemPrice').value;
+    const category = document.getElementById('itemCategory').value;
+    const desc = document.getElementById('itemDesc').value;
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    // 1. Upload Image to Storage
+    const fileName = `${Date.now()}_${file.name}`;
+    const { data: imgData, error: imgError } = await supabase.storage
+        .from('listing-images')
+        .upload(fileName, file);
+
+    if (imgError) return alert("Image upload failed!");
+
+    // 2. Get the Public URL of the image
+    const { data: { publicUrl } } = supabase.storage
+        .from('listing-images')
+        .getPublicUrl(fileName);
+
+    // 3. Save Ad details to Database
+    const { error: dbError } = await supabase
+        .from('listings')
+        .insert([{
+            title: title,
+            price: price,
+            category: category,
+            description: desc,
+            image_url: publicUrl,
+            seller_id: user.id
+        }]);
+
+    if (dbError) {
+        alert("Error saving ad: " + dbError.message);
+    } else {
+        alert("Ad Posted Successfully! 🎉");
+        showView('home');
+        fetchAds(); // Refresh the home feed
+    }
+    
+    btn.innerText = "Post Ad Now";
+    btn.disabled = false;
+}
