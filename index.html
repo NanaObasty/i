@@ -25,6 +25,7 @@
         <h1>NanaObasty Marketplace</h1>
         <button id="loginBtn">Login / Sign Up</button>
         <button id="sellBtn">Post an Ad</button>
+        
     </nav>
 <div class="category-slider">
     <div class="category-item active" onclick="filterByCategory('All')">
@@ -93,7 +94,18 @@
         </form>
         <p id="toggleAuth">Don't have an account? Sign Up</p>
     </div>
+
+            <div id="seller-registration" class="form-card">
+    <h3>Become a Verified Seller</h3>
+    <p>Fill in your details to start posting ads.</p>
+    
+    <input type="text" id="shopName" placeholder="Business or Shop Name">
+    <input type="tel" id="sellerPhone" placeholder="MoMo / WhatsApp Number">
+    <textarea id="shopDesc" placeholder="What do you sell? (Short bio)"></textarea>
+    
+    <button onclick="registerAsSeller()" class="btn-primary">Register Now</button>
 </div>
+            </div>
 <button id="googleLoginBtn" class="google-btn">
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
     Continue with Google
