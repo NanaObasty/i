@@ -141,3 +141,40 @@ loginNavBtn.onclick = () => authModal.style.display = "block";
 document.getElementById('closeAuth').onclick = () => authModal.style.display = "none";
 
 checkUser();
+const myAdsBtn = document.getElementById('myAdsBtn');
+const allAdsBtn = document.getElementById('allAdsBtn');
+
+// 1. Show the "My Ads" button only if logged in
+async function updateUIForUser(user) {
+    if (user) {
+        myAdsBtn.style.display = 'inline';
+        userEmailSpan.innerText = user.email;
+        loginNavBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline';
+    }
+}
+
+// 2. Function to show ONLY the current user's ads
+myAdsBtn.onclick = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    const { data, error } = await supabase
+        .from('listings')
+        .select('*')
+        .eq('user_id', user.id); // Filter by the logged-in user's ID
+
+    if (!error) {
+        displayAds(data);
+        myAdsBtn.style.display = 'none';
+        allAdsBtn.style.display = 'inline';
+        document.querySelector('h1').innerText = "My Listings";
+    }
+};
+
+// 3. Function to go back to the full marketplace
+allAdsBtn.onclick = () => {
+    fetchAds(); // This calls the original function that gets everything
+    allAdsBtn.style.display = 'none';
+    myAdsBtn.style.display = 'inline';
+    document.querySelector('h1').innerText = "Marketplace";
+};
