@@ -534,3 +534,17 @@ body.dark-mode .menu-item:active {
     margin-top: 10px;
     cursor: pointer;
 }
+#user-avatar {
+    background-color: #eee;
+    display: block;
+    margin: 0 auto;
+}
+
+/* If image fails to load, show a grey circle */
+#user-avatar:after {
+    content: "👤";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
