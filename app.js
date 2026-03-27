@@ -565,3 +565,28 @@ async function handleLogin() {
         alert("Error: " + err.message);
     }
 }
+// --- Authentication Logic ---
+
+async function handleLogin() {
+    console.log("Login function triggered! 🚀"); // This confirms the button works
+
+    try {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                // This ensures it returns to your site whether you are on localhost or Vercel
+                redirectTo: window.location.origin 
+            }
+        });
+
+        if (error) {
+            console.error("Supabase Auth Error:", error.message);
+            alert("Login Error: " + error.message);
+        } else {
+            console.log("Redirecting to Google...", data);
+        }
+    } catch (err) {
+        console.error("System Error:", err);
+        alert("Check your console (F12) for a system error.");
+    }
+}
