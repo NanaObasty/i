@@ -74,3 +74,25 @@ nav {
     font-weight: bold;
     cursor: pointer;
 }
+#search-container {
+    background: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#searchInput {
+    width: 60%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Rounder look */
+    outline: none;
+}
+
+#filterCategory {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
