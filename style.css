@@ -346,3 +346,28 @@ body.dark-mode img {
 .category-item.active p {
     color: #00b53f;
 }
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.google-btn:hover {
+    background: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
