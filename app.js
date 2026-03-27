@@ -114,7 +114,54 @@ const authForm = document.getElementById('authForm');
 const loginNavBtn = document.getElementById('loginNavBtn');
 const logoutBtn = document.getElementById('logoutBtn');
 const userEmailSpan = document.getElementById('userEmail');
+async function registerAsSeller() {
+    const user = supabase.auth.user();
+    if (!user) return showNotification("Please login first!", "error");
 
+    const shopName = document.getElementById('shopName').value;
+    const phone = document.getElementById('sellerPhone').value;
+    const bio = document.getElementById('shopDesc').value;
+
+    const { error } = await supabase
+        .from('profiles')
+        .update({ 
+            is_seller: true, 
+            shop_name: shopName, 
+            phone_number: phone,
+            bio: bio 
+        })
+        .eq('id', user.id);
+
+    if (error) {
+        showNotification("Registration failed!", "error");
+    } else {
+        showNotification("You are now a Verified Seller! ✅", "success");
+        // Hide the registration form and show the "Post Ad" button
+        document.getElementById('seller-registration').style.display = 'none';
+        document.getElementById('post-ad-btn').style.display = 'block';
+    }
+}
+async function checkSellerStatus() {
+    const user = supabase.auth.user();
+    if (!user) return;
+
+    const { data } = await supabase
+        .from('profiles')
+        .select('is_seller')
+        .eq('id', user.id)
+        .single();
+
+    const postBtn = document.getElementById('post-ad-btn');
+    const regForm = document.getElementById('seller-registration');
+
+    if (data && data.is_seller) {
+        postBtn.style.display = 'block';
+        regForm.style.display = 'none';
+    } else {
+        postBtn.style.display = 'none';
+        regForm.style.display = 'block';
+    }
+}
 // 1. Check Login Status on Load
 async function checkUser() {
     const { data: { user } } = await supabase.auth.getUser();
