@@ -141,27 +141,38 @@ async function registerAsSeller() {
         document.getElementById('post-ad-btn').style.display = 'block';
     }
 }
-async function checkSellerStatus() {
-    const user = supabase.auth.user();
-    if (!user) return;
+async function syncProfileData() {
+    const { data: { user } } = await supabase.auth.getUser();
 
-    const { data } = await supabase
-        .from('profiles')
-        .select('is_seller')
-        .eq('id', user.id)
-        .single();
+    if (user) {
+        // 1. Get Google metadata
+        const fullName = user.user_metadata.full_name;
+        const avatarUrl = user.user_metadata.avatar_url;
+        const email = user.email;
 
-    const postBtn = document.getElementById('post-ad-btn');
-    const regForm = document.getElementById('seller-registration');
+        // 2. Update the HTML elements we created
+        document.getElementById('user-name').innerText = fullName || "Marketplace User";
+        document.getElementById('user-email').innerText = email;
+        
+        const avatarImg = document.getElementById('user-avatar');
+        if (avatarUrl) {
+            avatarImg.src = avatarUrl;
+        }
 
-    if (data && data.is_seller) {
-        postBtn.style.display = 'block';
-        regForm.style.display = 'none';
+        // 3. Hide the "Login" button and show "Logout"
+        console.log("User synced:", fullName);
     } else {
-        postBtn.style.display = 'none';
-        regForm.style.display = 'block';
+        // Reset to guest if no one is logged in
+        document.getElementById('user-name').innerText = "Guest User";
+        document.getElementById('user-avatar').src = "https://via.placeholder.com/100";
     }
 }
+
+// Call this function inside your window.onload
+window.onload = () => {
+    syncProfileData();
+    fetchAds();
+};
 // 1. Check Login Status on Load
 async function checkUser() {
     const { data: { user } } = await supabase.auth.getUser();
