@@ -1,61 +1,76 @@
-body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; }
-nav { background: #00b53f; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+/* 1. MAIN PAGE & NAVIGATION */
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #f0f2f5; 
+    margin: 0; 
+}
+nav { 
+    background-color: #00b53f; 
+    color: white; 
+    padding: 15px 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+#sellBtn {
+    background-color: #ffde00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+/* 2. THE AD GRID (The Tonaton look) */
 #ad-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .ad-card {
     background: white;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
-.ad-card:hover { transform: translateY(-5px); }
-.ad-card img { width: 100%; height: 150px; object-fit: cover; }
+.ad-card img { width: 100%; height: 180px; object-fit: cover; }
 .ad-info { padding: 15px; }
 .price { color: #00b53f; font-weight: bold; font-size: 1.2rem; }
-/* Modal Background */
+
+/* 3. THE POP-UP FORM (The Step 3 code) */
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 100; 
+    z-index: 2000; 
     left: 0; top: 0; width: 100%; height: 100%; 
-    background-color: rgba(0,0,0,0.5); 
+    background-color: rgba(0,0,0,0.6); 
 }
-
-/* Modal Box */
 .modal-content {
     background-color: white;
-    margin: 10% auto;
-    padding: 20px;
+    margin: 5% auto;
+    padding: 25px;
     width: 90%;
-    max-width: 500px;
-    border-radius: 10px;
+    max-width: 450px;
+    border-radius: 12px;
 }
-
 #postAdForm input, #postAdForm select, #postAdForm textarea {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box; /* Important for alignment */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* This keeps inputs from overlapping */
 }
-
 #submitBtn {
     background-color: #00b53f;
     color: white;
     border: none;
     padding: 15px;
     width: 100%;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
 }
