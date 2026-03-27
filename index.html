@@ -21,7 +21,35 @@
         <option value="Clothes">Clothes</option>
         <option value="Footwear">Footwear</option>    
     </select>
+            <section id="profile-view" class="view" style="display: none;">
+    <div class="profile-header">
+        <img id="user-avatar" src="https://via.placeholder.com/100" alt="User">
+        <h2 id="user-name">Guest User</h2>
+        <p id="user-email" style="color: #888; font-size: 0.9rem;">Sign in to sync your ads</p>
+    </div>
+
+    <div class="settings-menu">
+        <div class="menu-item" onclick="showView('home')">
+            <span>🏠 My Listings</span>
+            <span>❯</span>
+        </div>
+        <div class="menu-item" id="darkModeToggle">
+            <span>🌙 Dark Mode</span>
+            <span class="toggle-icon">OFF</span>
+        </div>
+        <div class="menu-item" onclick="handleLogout()" style="color: #ff4d4d;">
+            <span>🚪 Logout</span>
+        </div>
+    </div>
+
+    <div id="seller-promo" class="seller-promo-card">
+        <h3>Start Selling Today!</h3>
+        <p>Verified sellers get 2x more views on their items.</p>
+        <button onclick="openSellerModal()">Register as Seller</button>
+    </div>
 </section>
+</section>
+        
         <h1>NanaObasty Marketplace</h1>
         <button id="loginBtn">Login / Sign Up</button>
         <button id="sellBtn">Post an Ad</button>
