@@ -22,3 +22,40 @@ nav { background: #00b53f; color: white; padding: 1rem; display: flex; justify-c
 .ad-card img { width: 100%; height: 150px; object-fit: cover; }
 .ad-info { padding: 15px; }
 .price { color: #00b53f; font-weight: bold; font-size: 1.2rem; }
+/* Modal Background */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0; top: 0; width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.5); 
+}
+
+/* Modal Box */
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+#postAdForm input, #postAdForm select, #postAdForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Important for alignment */
+}
+
+#submitBtn {
+    background-color: #00b53f;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+}
