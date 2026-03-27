@@ -585,3 +585,22 @@ body.dark-mode .menu-item:active {
     background: var(--bg-color);
     border-top: 1px solid #ddd;
 }
+.btn-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366; /* WhatsApp Green */
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    flex-grow: 1;
+    margin-right: 5px;
+}
+
+.ad-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
