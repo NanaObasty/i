@@ -92,3 +92,52 @@ async function deleteAd(id) {
         document.getElementById(`ad-${id}`).remove();
     }
 }
+const authModal = document.getElementById('authModal');
+const authForm = document.getElementById('authForm');
+const loginNavBtn = document.getElementById('loginNavBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const userEmailSpan = document.getElementById('userEmail');
+
+// 1. Check Login Status on Load
+async function checkUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+        userEmailSpan.innerText = user.email;
+        loginNavBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline';
+    }
+}
+
+// 2. Handle Login/Signup
+authForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+    const isLoggingIn = document.getElementById('authTitle').innerText === "Login";
+
+    let result;
+    if (isLoggingIn) {
+        result = await supabase.auth.signInWithPassword({ email, password });
+    } else {
+        result = await supabase.auth.signUp({ email, password });
+        alert("Check your email for a confirmation link!");
+    }
+
+    if (result.error) {
+        alert(result.error.message);
+    } else {
+        location.reload();
+    }
+};
+
+// 3. Logout Logic
+logoutBtn.onclick = async () => {
+    await supabase.auth.signOut();
+    location.reload();
+};
+
+// Open Auth Modal
+loginNavBtn.onclick = () => authModal.style.display = "block";
+document.getElementById('closeAuth').onclick = () => authModal.style.display = "none";
+
+checkUser();
