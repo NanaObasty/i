@@ -223,3 +223,6 @@ nav {
     background-color: #e0e0e0;
     background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
 }
+body.dark-mode img {
+    filter: brightness(0.8); /* Slightly dims images so they don't blind the user */
+}
