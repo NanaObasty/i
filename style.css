@@ -455,3 +455,82 @@ body.dark-mode select {
     font-weight: bold;
     cursor: pointer;
 }
+/* Container for the Profile Section */
+#profile-view {
+    padding: 20px;
+    background-color: var(--bg-color);
+    min-height: 90vh;
+}
+
+/* User Header Card */
+.profile-header {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.profile-header img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #00b53f;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.profile-header h2 {
+    margin: 10px 0 5px;
+    font-size: 1.4rem;
+}
+
+/* Settings Menu Items */
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: 0.2s;
+}
+
+.menu-item:active {
+    transform: scale(0.98);
+    background: #f0f0f0;
+}
+
+body.dark-mode .menu-item:active {
+    background: #252525;
+}
+
+/* Seller Registration Highlight */
+.seller-promo-card {
+    background: linear-gradient(135deg, #00b53f, #008a30);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.seller-promo-card button {
+    background: white;
+    color: #00b53f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
