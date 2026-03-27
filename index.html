@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Marketplace</title>
@@ -19,6 +18,27 @@
         <p>Loading amazing deals...</p>
     </main>
 
-    <script src="app.js"></script>
+    <script src="app.js">
+        <div id="postAdModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Post Your Item</h2>
+        <form id="postAdForm">
+            <input type="text" id="title" placeholder="What are you selling?" required>
+            <input type="number" id="price" placeholder="Price (GH₵)" required>
+            <select id="category">
+                <option value="Electronics">Electronics</option>
+                <option value="Vehicles">Vehicles</option>
+                <option value="Property">Property</option>
+                <option value="Fashion">Fashion</option>
+            </select>
+            <textarea id="description" placeholder="Describe your item..."></textarea>
+            <input type="url" id="image_url" placeholder="Image URL (Link to a photo)">
+            <button type="submit" id="submitBtn">Post Ad Now</button>
+        </form>
+    </div>
+</div>
+    </script>
+    
 </body>
 </html>
