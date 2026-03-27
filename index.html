@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <section id="sell-view" class="view" style="display: none;">
+    <div class="page-container">
+        <h2>Post New Ad 📸</h2>
+        <form id="sellForm" onsubmit="handleUpload(event)">
+            <label>Item Photo</label>
+            <input type="file" id="itemPhoto" accept="image/*" required>
+            
+            <label>Title</label>
+            <input type="text" id="itemTitle" placeholder="e.g. iPhone 13 Pro Max" required>
+
+            <label>Price (GHS)</label>
+            <input type="number" id="itemPrice" placeholder="0.00" required>
+
+            <label>Category</label>
+            <select id="itemCategory">
+                <option value="Vehicles">🚗 Vehicles</option>
+                <option value="Electronics">📱 Electronics</option>
+                <option value="Property">🏠 Property</option>
+            </select>
+
+            <label>Description</label>
+            <textarea id="itemDesc" rows="3" placeholder="Tell us about the item..."></textarea>
+
+            <button type="submit" id="submitBtn" class="btn-primary">Post Ad Now</button>
+        </form>
+    </div>
+</section>
     <section id="chat-view" class="view" style="display: none;">
     <div class="chat-header">
         <button onclick="showView('home')">⬅️</button>
