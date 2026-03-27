@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <section id="chat-view" class="view" style="display: none;">
+    <div class="chat-header">
+        <button onclick="showView('home')">⬅️</button>
+        <h3 id="chat-with-name">Chat</h3>
+    </div>
+    
+    <div id="message-container">
+        </div>
+
+    <div class="chat-input-area">
+        <input type="text" id="msgInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</section>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
