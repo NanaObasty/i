@@ -31,13 +31,13 @@ function displayAds(ads) {
 
     ads.forEach(ad => {
         const adCard = `
-            <div class="ad-card">
+            <div class="ad-card" id="ad-${ad.id}">
                 <img src="${ad.image_url || 'https://via.placeholder.com/150'}" alt="${ad.title}">
                 <div class="ad-info">
                     <h3>${ad.title}</h3>
                     <p class="price">GH₵ ${ad.price}</p>
                     <p class="category">${ad.category}</p>
-                    <button onclick="viewDetails('${ad.id}')">View Details</button>
+                    <button class="delete-btn" onclick="deleteAd('${ad.id}')">Delete</button>
                 </div>
             </div>
         `;
@@ -75,3 +75,20 @@ function filterAds() {
 // Run the filter function whenever the user types or changes the dropdown
 searchInput.addEventListener('input', filterAds);
 filterCategory.addEventListener('change', filterAds);
+async function deleteAd(id) {
+    const confirmation = confirm("Are you sure you want to delete this ad?");
+    if (!confirmation) return;
+
+    const { error } = await supabase
+        .from('listings')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        alert("Error deleting ad: " + error.message);
+    } else {
+        alert("Ad deleted successfully!");
+        // Remove the card from the screen immediately
+        document.getElementById(`ad-${id}`).remove();
+    }
+}
