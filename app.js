@@ -493,3 +493,51 @@ async function handleUpload(event) {
     btn.innerText = "Post Ad Now";
     btn.disabled = false;
 }
+async function loadMyAds() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return showView('profile');
+
+    const { data: ads, error } = await supabase
+        .from('listings')
+        .select('*')
+        .eq('seller_id', user.id)
+        .order('created_at', { ascending: false });
+
+    const container = document.getElementById('my-ads-grid');
+    container.innerHTML = '';
+
+    if (ads.length === 0) {
+        container.innerHTML = "<p style='text-align:center; padding:20px;'>You haven't posted any ads yet.</p>";
+    }
+
+    ads.forEach(ad => {
+        container.innerHTML += `
+            <div class="ad-card" id="ad-${ad.id}">
+                <img src="${ad.image_url}" alt="${ad.title}">
+                <div class="ad-info">
+                    <h4>${ad.title}</h4>
+                    <p class="price">GHS ${ad.price}</p>
+                    <button class="btn-delete" onclick="deleteAd('${ad.id}', '${ad.image_url}')">🗑️ Delete Ad</button>
+                </div>
+            </div>
+        `;
+    });
+    showView('my-ads');
+}
+
+async function deleteAd(adId, imageUrl) {
+    if (!confirm("Are you sure you want to delete this ad? This cannot be undone.")) return;
+
+    // 1. Delete from Database
+    const { error: dbError } = await supabase.from('listings').delete().eq('id', adId);
+
+    if (!dbError) {
+        // 2. Pro Move: Delete the image from Storage too to save space!
+        const fileName = imageUrl.split('/').pop();
+        await supabase.storage.from('listing-images').remove([fileName]);
+
+        // 3. Remove from UI
+        document.getElementById(`ad-${adId}`).remove();
+        showNotification("Ad deleted successfully", "success");
+    }
+}
