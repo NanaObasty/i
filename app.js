@@ -39,6 +39,39 @@ function displayAds(ads) {
                     <p class="category">${ad.category}</p>
                     <button class="delete-btn" onclick="deleteAd('${ad.id}')">Delete</button>
                 </div>
+                function displayAds(ads) {
+    const container = document.getElementById('ad-grid');
+    container.innerHTML = ''; 
+
+    ads.forEach(ad => {
+        // Create the WhatsApp link using the seller's phone number
+        // We use encodeURIComponent to make sure the text works in a URL
+        const waMessage = encodeURIComponent(`Hello, I saw your ad for "NanaObasty Marketplace" on the Marketplace. Is it available?`);
+        const waLink = `https://wa.me/233539547368?text=${waMessage}`;
+
+        container.innerHTML += `
+            <div class="ad-card">
+                <div class="image-container">
+                    <img src="${ad.image_url}" alt="${ad.title}">
+                    <span class="category-badge">${ad.category}</span>
+                </div>
+                <div class="ad-info">
+                    <h3>${ad.title}</h3>
+                    <p class="price">GHS ${ad.price}</p>
+                    <p class="location">📍 ${ad.location || 'Ghana'}</p>
+                    
+                    <div class="ad-actions">
+                        <a href="${waLink}" target="_blank" class="btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                        
+                        <button class="btn-report-small" onclick="submitReport('${ad.id}')">🚩</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
             </div>
             ads.forEach(ad => {
     const adCard = `
