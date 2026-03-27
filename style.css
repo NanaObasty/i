@@ -401,6 +401,26 @@ input, select, textarea {
     color: var(--text-color);
     border: 1px solid #ddd;
 }
+img {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* This class is added automatically by the browser when the image loads */
+img[loading="lazy"] {
+    opacity: 1;
+}
+
+/* Add a background color to the container so it's not a hole while loading */
+.image-container {
+    background-color: #eee;
+    aspect-ratio: 16 / 9; /* Keeps the space reserved */
+    overflow: hidden;
+}
+
+body.dark-mode .image-container {
+    background-color: #222;
+}
 
 body.dark-mode input, 
 body.dark-mode select {
