@@ -356,3 +356,16 @@ function observeCards() {
         observer.observe(card);
     });
 }
+function showView(viewId) {
+    // Hide all main views
+    document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+    
+    // Show the selected one
+    document.getElementById(viewId + '-view').style.display = 'block';
+
+    // Scroll to the top automatically
+    window.scrollTo(0, 0);
+
+    // Optional: Add an "active" class to your bottom nav icons
+    updateBottomNav(viewId);
+}
