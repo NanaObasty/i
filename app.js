@@ -47,3 +47,31 @@ function displayAds(ads) {
 
 // Start the app
 fetchAds();
+const searchInput = document.getElementById('searchInput');
+const filterCategory = document.getElementById('filterCategory');
+
+// This function filters the ads based on user input
+function filterAds() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedCategory = filterCategory.value;
+
+    const cards = document.querySelectorAll('.ad-card');
+
+    cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        const category = card.querySelector('.category').innerText;
+
+        const matchesSearch = title.includes(searchTerm);
+        const matchesCategory = selectedCategory === "All" || category === selectedCategory;
+
+        if (matchesSearch && matchesCategory) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+// Run the filter function whenever the user types or changes the dropdown
+searchInput.addEventListener('input', filterAds);
+filterCategory.addEventListener('change', filterAds);
