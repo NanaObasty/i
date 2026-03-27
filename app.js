@@ -40,6 +40,23 @@ function displayAds(ads) {
                     <button class="delete-btn" onclick="deleteAd('${ad.id}')">Delete</button>
                 </div>
             </div>
+            ads.forEach(ad => {
+    const adCard = `
+        <div class="ad-card">
+            <div class="image-container">
+                <img 
+                    src="${ad.image_url}" 
+                    alt="${ad.title}" 
+                    loading="lazy" 
+                    decoding="async"
+                    onclick="openImage('${ad.image_url}')"
+                >
+                <span class="time-badge">${timeAgo(ad.created_at)}</span>
+            </div>
+            </div>
+    `;
+    adGrid.insertAdjacentHTML('beforeend', adCard);
+});
         `;
         adGrid.insertAdjacentHTML('beforeend', adCard);
     });
