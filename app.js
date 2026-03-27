@@ -220,3 +220,22 @@ navItems.forEach(item => {
         this.classList.add('active');
     });
 });
+function filterByCategory(category) {
+    // 1. Update the UI (the green circles)
+    const items = document.querySelectorAll('.category-item');
+    items.forEach(item => {
+        item.classList.remove('active');
+        if (item.querySelector('p').innerText === category) {
+            item.classList.add('active');
+        }
+    });
+
+    // 2. Actually filter the ads
+    // We can reuse your existing filterCategory dropdown logic or 
+    // simply trigger the filterAds function after setting the dropdown value
+    const dropdown = document.getElementById('filterCategory');
+    if (dropdown) {
+        dropdown.value = category;
+        filterAds(); // This is the function we built earlier!
+    }
+}
