@@ -75,12 +75,19 @@ nav {
     cursor: pointer;
 }
 #search-container {
-    background: white;
-    padding: 20px;
+    background: linear-gradient(180deg, #00b53f 0%, #009635 100%);
+    padding: 40px 20px;
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    border-bottom: 1px solid #ddd;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+#search-container h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 #searchInput {
@@ -110,4 +117,44 @@ nav {
 
 .delete-btn:hover {
     background-color: #cc0000;
+}
+.ad-info {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    color: #00b53f;
+    font-size: 1.3rem;
+    font-weight: 800; /* Extra bold for the price */
+    margin: 5px 0;
+}
+
+/* Make the Call button stand out with an icon-like feel */
+.call-btn {
+    background-color: #00b53f;
+    border-radius: 50px; /* Capsule shape */
+    padding: 12px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-btn {
+    background: none;
+    color: #ff4d4d;
+    text-decoration: underline;
+    font-weight: normal;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+}
+.ad-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Forces all images to the same rectangle shape */
+    object-fit: cover; /* Prevents stretching */
+    background-color: #f8f8f8;
 }
