@@ -253,3 +253,28 @@ googleBtn.onclick = async () => {
         showNotification("Error logging in: " + error.message, "error");
     }
 };
+// Wait for the page to load fully
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // 1. Check if user has a saved preference
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        darkModeToggle.innerText = "☀️ Light Mode";
+    }
+
+    // 2. Add the click event
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        // 3. Save the preference and update text
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            darkModeToggle.innerText = "☀️ Light Mode";
+        } else {
+            localStorage.setItem('theme', 'light');
+            darkModeToggle.innerText = "🌙 Dark Mode";
+        }
+    });
+});
