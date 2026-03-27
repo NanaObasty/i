@@ -1,8 +1,8 @@
 /* 1. MAIN PAGE & NAVIGATION */
 body { 
     font-family: 'Montserrat', sans-serif; 
-    background-color: #f4f7f6; /* A slightly softer grey-blue background */
     margin: 0; 
+    background-color: #f4f7f6; /* A slightly softer grey-blue background */
     color: #333; /* Darker text for better readability */
 }
 
