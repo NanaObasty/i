@@ -412,3 +412,34 @@ OneSignalDeferred.push(async function(OneSignal) {
         console.log("Notifications synced for user:", user.id);
     }
 });
+let activeChatAdId = null;
+let activeReceiverId = null;
+
+// 1. Listen for new messages in Realtime
+supabase
+  .channel('public:messages')
+  .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+    const newMessage = payload.new;
+    // Only show if the message belongs to the current open chat
+    if (newMessage.ad_id === activeChatAdId) {
+        appendMessageToUI(newMessage);
+    }
+  })
+  .subscribe();
+
+// 2. Function to send a message
+async function sendMessage() {
+    const content = document.getElementById('msgInput').value;
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!content || !user) return;
+
+    const { error } = await supabase.from('messages').insert([{
+        sender_id: user.id,
+        receiver_id: activeReceiverId,
+        ad_id: activeChatAdId,
+        content: content
+    }]);
+
+    if (!error) document.getElementById('msgInput').value = '';
+}
