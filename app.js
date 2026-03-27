@@ -210,3 +210,13 @@ darkModeToggle.onclick = () => {
         darkModeToggle.innerText = "🌙 Dark Mode";
     }
 };
+const navItems = document.querySelectorAll('.nav-item');
+
+navItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // Remove 'active' from all
+        navItems.forEach(i => i.classList.remove('active'));
+        // Add to the clicked one
+        this.classList.add('active');
+    });
+});
