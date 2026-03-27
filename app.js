@@ -540,4 +540,28 @@ async function deleteAd(adId, imageUrl) {
         document.getElementById(`ad-${adId}`).remove();
         showNotification("Ad deleted successfully", "success");
     }
+    const supabaseUrl = 'https://your-project-url.supabase.co';
+const supabaseKey = 'your-anon-key';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// TEST: Add this line to see if it's connected
+console.log("Supabase initialized:", supabase);
+}
+async function handleLogin() {
+    console.log("Login button clicked!"); // If this doesn't show in Console (F12), your HTML isn't calling the function.
+
+    try {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: window.location.origin // Automatically detects if you are on localhost or Vercel
+            }
+        });
+
+        if (error) throw error;
+        console.log("Login data:", data);
+    } catch (err) {
+        console.error("Login failed:", err.message);
+        alert("Error: " + err.message);
+    }
 }
