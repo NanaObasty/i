@@ -12,39 +12,36 @@ h1, h2, h3, .price {
 }
 
 nav { 
-    /* 1. Define the colors for both modes */
+ /* 1. Default Colors (Light) */
 :root {
     --bg-color: #f4f7f6;
     --card-bg: #ffffff;
     --text-color: #333333;
     --nav-bg: #00b53f;
-    --border-color: #eeeeee;
 }
 
-/* 2. Define what happens when .dark-mode is active */
+/* 2. Dark Colors (Triggered by the .dark-mode class) */
 body.dark-mode {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
     --text-color: #e0e0e0;
-    --nav-bg: #008a30; /* Darker green for contrast */
-    --border-color: #333333;
+    --nav-bg: #008a30;
 }
 
-/* 3. Apply these variables to your elements */
+/* 3. Apply variables to the actual elements */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.3s, color 0.3s; /* Makes the switch smooth */
 }
 
 .ad-card {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
+    color: var(--text-color);
 }
 
 nav {
     background-color: var(--nav-bg);
-}
 }
 #sellBtn {
     background-color: #ffde00; /* Bright yellow */
