@@ -178,3 +178,15 @@ allAdsBtn.onclick = () => {
     myAdsBtn.style.display = 'inline';
     document.querySelector('h1').innerText = "Marketplace";
 };
+const imageUrlInput = document.getElementById('image_url');
+const imgPreview = document.getElementById('imgPreview');
+
+imageUrlInput.addEventListener('input', () => {
+    const url = imageUrlInput.value;
+    if (url) {
+        imgPreview.src = url;
+        imgPreview.style.display = 'block';
+    } else {
+        imgPreview.style.display = 'none';
+    }
+});
