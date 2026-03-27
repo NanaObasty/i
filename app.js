@@ -167,7 +167,29 @@ async function syncProfileData() {
         document.getElementById('user-avatar').src = "https://via.placeholder.com/100";
     }
 }
+async function updateSellerUI() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
 
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('is_seller, shop_name')
+        .eq('id', user.id)
+        .single();
+
+    const promoCard = document.getElementById('seller-promo');
+
+    if (profile && profile.is_seller) {
+        // Change the look for existing sellers
+        promoCard.style.background = "var(--card-bg)";
+        promoCard.style.border = "1px solid #00b53f";
+        promoCard.innerHTML = `
+            <h3 style="color: var(--text-color)">Shop: ${profile.shop_name}</h3>
+            <p style="color: #666">You are a Verified Seller ✅</p>
+            <button onclick="showMyAds()" style="background: #00b53f; color: white;">Manage My Ads</button>
+        `;
+    }
+}
 // Call this function inside your window.onload
 window.onload = () => {
     syncProfileData();
