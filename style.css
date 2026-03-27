@@ -12,16 +12,39 @@ h1, h2, h3, .price {
 }
 
 nav { 
-    background-color: #00b53f; 
-    color: white; 
-    padding: 10px 5%; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    position: sticky; /* Keeps it at the top */
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* 1. Define the colors for both modes */
+:root {
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --nav-bg: #00b53f;
+    --border-color: #eeeeee;
+}
+
+/* 2. Define what happens when .dark-mode is active */
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --nav-bg: #008a30; /* Darker green for contrast */
+    --border-color: #333333;
+}
+
+/* 3. Apply these variables to your elements */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+.ad-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+nav {
+    background-color: var(--nav-bg);
+}
 }
 #sellBtn {
     background-color: #ffde00; /* Bright yellow */
