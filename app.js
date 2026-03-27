@@ -402,3 +402,13 @@ function showView(viewId) {
     // Optional: Add an "active" class to your bottom nav icons
     updateBottomNav(viewId);
 }
+// Add this inside your syncProfileData function
+OneSignalDeferred.push(async function(OneSignal) {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (user) {
+        // This links the notification ID to your Supabase User ID
+        await OneSignal.login(user.id); 
+        console.log("Notifications synced for user:", user.id);
+    }
+});
