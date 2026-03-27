@@ -239,3 +239,17 @@ function filterByCategory(category) {
         filterAds(); // This is the function we built earlier!
     }
 }
+const googleBtn = document.getElementById('googleLoginBtn');
+
+googleBtn.onclick = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            redirectTo: window.location.origin // Takes them back to your site after login
+        }
+    });
+
+    if (error) {
+        showNotification("Error logging in: " + error.message, "error");
+    }
+};
