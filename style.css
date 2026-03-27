@@ -368,3 +368,41 @@ body.dark-mode img {
     background: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+/* Apply to the whole body */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color) !important; /* Forces the text to update */
+}
+
+/* Fix specific elements that might be stubborn */
+h1, h2, h3, h4, p, span, label {
+    color: var(--text-color);
+}
+
+/* Fix the Ad Cards specifically */
+.ad-card {
+    background-color: var(--card-bg);
+    border-color: rgba(255, 255, 255, 0.1); /* Subtle border for dark mode */
+}
+body.dark-mode .ad-card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Heavier shadow for depth */
+}
+.ad-card h3 {
+    color: var(--text-color);
+}
+
+/* Ensure links and buttons stay readable */
+.seller-link {
+    color: #00b53f; /* Keep the green, it looks good on both! */
+}
+/* Search Input & Select Dropdowns */
+input, select, textarea {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid #ddd;
+}
+
+body.dark-mode input, 
+body.dark-mode select {
+    border: 1px solid #444; /* Darker border for dark mode */
+}
