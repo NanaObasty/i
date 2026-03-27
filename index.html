@@ -1,24 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Marketplace</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
+        <button id="darkModeToggle" style="cursor:pointer; padding: 5px 10px; border-radius: 20px; border: 1px solid white; background: transparent; color: white;">
+    🌙 Dark Mode
+</button>
+        <section id="search-container">
+    <input type="text" id="searchInput" placeholder="Search for cars, phones, jobs...">
+    <select id="filterCategory">
+        <option value="All">All Categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Vehicles">Vehicles</option>
+        <option value="Property">Property</option>
+        <option value="Fashion">Fashion</option>
+    </select>
+</section>
         <h1>NanaObasty Marketplace</h1>
         <button id="loginBtn">Login / Sign Up</button>
         <button id="sellBtn">Post an Ad</button>
     </nav>
-
+<div class="category-slider">
+    <div class="category-item active" onclick="filterByCategory('All')">
+        <div class="icon-circle">🔍</div>
+        <p>All</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Electronics')">
+        <div class="icon-circle">📱</div>
+        <p>Electronics</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Vehicles')">
+        <div class="icon-circle">🚗</div>
+        <p>Vehicles</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Property')">
+        <div class="icon-circle">🏠</div>
+        <p>Property</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Fashion')">
+        <div class="icon-circle">👕</div>
+        <p>Fashion</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Jobs')">
+        <div class="icon-circle">💼</div>
+        <p>Jobs</p>
+    </div>
+</div>
     <main id="ad-grid">
         <p>Loading amazing deals...</p>
     </main>
 
-    <script src="app.js"></script>
+    <script src="app.js">
+        <div id="postAdModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Post Your Item</h2>
+        <form id="postAdForm">
+            <input type="text" id="title" placeholder="What are you selling?" required>
+            <input type="number" id="price" placeholder="Price (GH₵)" required>
+            <input type="tel" id="phone" placeholder="0539547368" required>
+            <select id="category">
+                <option value="Electronics">Electronics</option>
+                <option value="Vehicles">Vehicles</option>
+                <option value="Property">Property</option>
+                <option value="Fashion">Fashion</option>
+            </select>
+            <textarea id="description" placeholder="Describe your item..."></textarea>
+          <label for="image_url">Image Link:</label>
+<input type="url" id="image_url" placeholder="Paste image address (e.g. https://...)" required>
+
+<div id="image-preview-container">
+    <img id="imgPreview" src="" alt="Image Preview" style="display:none;">
+</div>
+            <button type="submit" id="submitBtn">Post Ad Now</button>
+        </form>
+    </div>
+</div>
+        <div id="authModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeAuth">&times;</span>
+        <h2 id="authTitle">Login</h2>
+        <form id="authForm">
+            <input type="email" id="authEmail" placeholder="Email" required>
+            <input type="password" id="authPassword" placeholder="Password" required>
+            <button type="submit" id="authBtn">Login</button>
+        </form>
+        <p id="toggleAuth">Don't have an account? Sign Up</p>
+    </div>
+</div>
+<button id="googleLoginBtn" class="google-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+    Continue with Google
+</button>
+<nav>
+            <div id="userSection">
+    <span id="userEmail"></span>
+    <button id="myAdsBtn" style="display:none;">My Ads</button>
+    <button id="showAllBtn" style="display:none;">Show All</button>
+    <button id="loginNavBtn">Login</button>
+    <button id="logoutBtn" style="display:none;">Logout</button>
+    <button id="sellBtn">Post
+    <h1>Marketplace</h1>
+    <div id="userSection">
+        <span id="userEmail"></span>
+        <button id="loginNavBtn">Login</button>
+        <button id="logoutBtn" style="display:none;">Logout</button>
+        <button id="sellBtn">Post an Ad</button>
+    </div>
+</nav>
+    </script>
+    <div class="bottom-nav">
+    <a href="#" onclick="showHome()" class="nav-item active">
+        <span>🏠</span>
+        <p>Home</p>
+    </a>
+    <a href="#" onclick="showSearch()" class="nav-item">
+        <span>🔍</span>
+        <p>Search</p>
+    </a>
+    <a href="#" onclick="openPostModal()" class="nav-item sell-btn-mobile">
+        <div class="plus-icon">+</div>
+        <p>Sell</p>
+    </a>
+    <a href="#" onclick="showFavorites()" class="nav-item">
+        <span>❤️</span>
+        <p>Saved</p>
+    </a>
+    <a href="#" onclick="showProfile()" class="nav-item">
+        <span>👤</span>
+        <p>Account</p>
+    </a>
+</div>
 </body>
 </html>
