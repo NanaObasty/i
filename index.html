@@ -27,7 +27,32 @@
         <button id="loginBtn">Login / Sign Up</button>
         <button id="sellBtn">Post an Ad</button>
     </nav>
-
+<div class="category-slider">
+    <div class="category-item active" onclick="filterByCategory('All')">
+        <div class="icon-circle">🔍</div>
+        <p>All</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Electronics')">
+        <div class="icon-circle">📱</div>
+        <p>Electronics</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Vehicles')">
+        <div class="icon-circle">🚗</div>
+        <p>Vehicles</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Property')">
+        <div class="icon-circle">🏠</div>
+        <p>Property</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Fashion')">
+        <div class="icon-circle">👕</div>
+        <p>Fashion</p>
+    </div>
+    <div class="category-item" onclick="filterByCategory('Jobs')">
+        <div class="icon-circle">💼</div>
+        <p>Jobs</p>
+    </div>
+</div>
     <main id="ad-grid">
         <p>Loading amazing deals...</p>
     </main>
